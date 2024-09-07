@@ -23,7 +23,7 @@ class Node{
 };
 
 Node* convertArr2LL(vector<int> &arr){
-    Node* head =new Node(arr[2]);
+    Node* head =new Node(arr[0]);
     Node* mover=head;
     for(int i=1;i<arr.size();i++)
     {
@@ -35,9 +35,71 @@ Node* convertArr2LL(vector<int> &arr){
 
 }
 
+int lengthOfLL(Node* head)
+{
+    int cnt=0;
+    Node* temp =head;
+    while(temp)
+    {
+        temp=temp->next;
+        cnt++;
+    }
+    return cnt;
+}
+
+int searchinLL(Node* head, int val)
+{
+    Node* temp =head;
+    while(temp)
+    {
+        if(temp->data==val)
+        return 1;
+        temp=temp->next;
+    }
+    return 0;
+}
+void print(Node* head) {
+    Node* temp = head;
+    while (temp != nullptr) {
+        cout << temp->data << " ";  // Print the data of each node
+        temp = temp->next;  // Move to the next node
+    }
+    cout << endl;
+}
+Node* removesTail(Node* head)
+{
+    Node* temp =head;
+    if(head==NULL || temp->next==NULL)
+    {
+        return NULL;
+    }
+    while(temp->next->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    delete temp->next;
+    temp->next=nullptr;
+    return head;
+
+}
 int main()
 {
+    int val;
     vector<int> arr={1,2,3,4};
+    // Node* temp =head;
     Node* head=convertArr2LL(arr);
-    cout<<head->data;
+    // while(temp)
+    // {
+    //     cout<<temp->data<<" ";
+    //     temp=temp->next;
+
+    // }
+
+    // cout<<endl<<"Length is "<<lengthOfLL(head);
+    // cin>>val;
+
+    // cout<<endl<<" Element is"<<searchinLL(head,val);
+     head=removesTail(head);
+     print(head);
+
 }
