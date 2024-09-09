@@ -82,9 +82,38 @@ Node* removesTail(Node* head)
     return head;
 
 }
+Node* insertPosition(Node*head ,int el , int k)
+{
+    if(head==NULL)
+    {
+        if(k==1)
+        {
+            return new Node(el);
+        }
+    }
+    if(k==1)
+    {
+        return new Node(el,head);
+    }
+    int cnt=0;
+    Node* temp= head;
+    while(temp!=NULL)
+     {cnt++;
+     if(cnt==k-1)
+    {
+        Node* x=new Node(el, temp->next);
+        temp->next=x;
+        break;
+
+    }
+    temp=temp->next;
+     }
+    return head;
+ } 
+
 int main()
 {
-    int val;
+    // int val;
     vector<int> arr={1,2,3,4};
     // Node* temp =head;
     Node* head=convertArr2LL(arr);
@@ -99,7 +128,9 @@ int main()
     // cin>>val;
 
     // cout<<endl<<" Element is"<<searchinLL(head,val);
-     head=removesTail(head);
+    //  head=removesTail(head);
+         head=insertPosition(head,100,3);
+
      print(head);
 
 }
