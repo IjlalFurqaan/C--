@@ -45,10 +45,27 @@ Node* convertArraytoDll(vector<int> &arr)
     }
  }
 
+Node* deleteHead(Node* head)
+{
+    if(head== NULL || head->next==NULL)
+    {
+        return NULL;
+    }
+    Node* prev=head;
+    head = head->next;
+
+    head->back=nullptr;
+    prev->next=nullptr;
+
+    delete prev;
+    return head;
+}
 
 int main(){
-    vector<int> arr= {1,2,3,4,5};
+    vector<int> arr= {1,0,1,2,3,4,5};
     Node* head =convertArraytoDll(arr);
+
+    head=deleteHead(head);
     print(head);
 
 }
